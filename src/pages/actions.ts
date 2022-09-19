@@ -1,4 +1,4 @@
-import { ReduxState } from "../types/ReduxState"
+import { ReduxState } from "../types/Redux"
 import * as API from "./API"
 
 export const getAllPlaying = async (_: ReduxState) => {
@@ -10,10 +10,8 @@ export const getAllPlaying = async (_: ReduxState) => {
 }
 
 export const getMovieDetail = async (_: ReduxState, movieId: number) => {
-  console.log("getMovieDetail");
-  const response = await API.getMovieDetail(movieId)
-  const allPlaying = response.results
+  const detail = await API.getMovieDetail(movieId)
   return {
-    allPlaying
+    detail
   }
 }

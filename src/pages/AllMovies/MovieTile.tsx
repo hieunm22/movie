@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom"
 
 const MovieTile = (props: MovieTileProps) => {
   const { movie } = props
-  const poster_path = process.env.REACT_APP_IMAGE_BASE_URL + movie.backdrop_path
+  const backdropPath = process.env.REACT_APP_IMAGE_BASE_URL + movie.backdrop_path
 
   const navigate = useNavigate()
   const href = () => {
@@ -17,7 +17,7 @@ const MovieTile = (props: MovieTileProps) => {
       className="movie-tile"
       onClick={href}
       title={movie.original_title}
-      style={{ backgroundImage: `url(${poster_path})` }}
+      style={{ backgroundImage: `url(${backdropPath})` }}
     >
       <div className="title" title={movie.title}>
         {movie.title}

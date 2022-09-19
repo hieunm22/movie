@@ -1,5 +1,4 @@
-import { ReduxActions } from "../../types/ReduxActions"
-import { ReduxState } from "../../types/ReduxState"
+import { ReduxActions, ReduxState } from "../../types/Redux"
 
 export type AllMoviesProps = ReduxState & ReduxActions
 export interface Movie {

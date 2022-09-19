@@ -3,17 +3,19 @@
 	"version": "0.1.0",
 	"private": true,
 	"dependencies": {
-    "@fortawesome/fontawesome-free": "^6.2.0",
+		"@fortawesome/fontawesome-free": "^6.2.0",
 		"@types/jest": "^27.5.2",
 		"@types/node": "^16.11.59",
 		"@types/react": "^18.0.20",
 		"@types/react-dom": "^18.0.6",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2",
+		"@types/styled-components": "^5.1.26",
+		"react": "^17.0.2",
+		"react-dom": "^17.0.2",
 		"react-router-dom": "^6.4.0",
 		"react-scripts": "5.0.1",
 		"redux-zero": "^5.1.7",
 		"sass": "^1.54.9",
+		"styled-components": "^5.3.5",
 		"typescript": "^4.8.3",
 		"web-vitals": "^2.1.4",
 		"wretch": "^2.1.1"
@@ -29,6 +31,9 @@
 		"build": "react-scripts build",
 		"test": "react-scripts test",
 		"eject": "react-scripts eject"
+	},
+	"resolutions": {
+		"styled-components": "^5"
 	},
 	"eslintConfig": {
 		"extends": [

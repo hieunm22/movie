@@ -1,12 +1,11 @@
-import { Fragment, useEffect, useState } from "react"
+import { Fragment, useEffect } from "react"
 import { Link } from "react-router-dom"
 import { connect } from "redux-zero/react"
 import { getAllPlaying } from "../actions"
-import { ReduxState } from "../../types/ReduxState"
+import { ReduxState } from "../../types/Redux"
 import MovieTile from "./MovieTile"
 import { AllMoviesProps, Movie } from "./AllMovies.types"
 import "./AllMovies.scss"
-// import { LoadingScreen } from "../../components/LoadingScreen/LoadingScreen"
 
 const AllMovies = (props: AllMoviesProps) => {
   useEffect(() => {
@@ -19,14 +18,16 @@ const AllMovies = (props: AllMoviesProps) => {
   return (
     <>
       <div className="movie-container">
-        {props.allPlaying && props.allPlaying.length > 0 &&
-          props.allPlaying.map((movie: Movie) => (
-            <Fragment key={movie.id}>
-              <MovieTile movie={movie} />
+        {props.allPlaying &&
+          props.allPlaying.map((movie: Movie) => {
+            const backdropPath = process.env.REACT_APP_IMAGE_BASE_URL + movie.backdrop_path
+            return <Fragment key={movie.id}>
+              <MovieTile movie={movie} backdropPath={backdropPath} />
             </Fragment>
-          ))}
+          })}
       </div>
       <Link className="return-btn" to="/">
+        <i className="fa-solid fa-house" />
         Return to home page
       </Link>
     </>

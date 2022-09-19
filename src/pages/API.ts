@@ -19,6 +19,8 @@ export const getAllPlaying = () => request.url(EP.getAllPlaying)
             .catch(handleError)
 
 export const getMovieDetail = (movieId: number) => request.url(`${EP.getMovieDetail}/${movieId}`)
+            .addon(QueryStringAddon)
+            .query({ api_key: process.env.REACT_APP_API_KEY })
             .get()
             .json(handleGetAll)
             .catch(handleError)
