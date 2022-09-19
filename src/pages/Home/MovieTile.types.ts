@@ -1,4 +1,4 @@
-import { Movie } from "./AllMovies.types"
+import { Movie } from "./Home.types"
 
 export interface MovieTileProps {
   movie: Movie

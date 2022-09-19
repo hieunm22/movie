@@ -1,4 +1,4 @@
-import { Movie } from "../pages/AllMovies/AllMovies.types"
+import { Movie } from "../pages/Home/Home.types"
 import { MovieDetailProps } from "../pages/MovieDetail/MovieDetail.types"
 
 export interface ReduxState {
@@ -9,4 +9,5 @@ export interface ReduxState {
 export interface ReduxActions {
   getAllPlaying: () => ReduxState,
   getMovieDetail: (movieId: number) => ReduxState
+  remove: (id: number) => ReduxState
 }

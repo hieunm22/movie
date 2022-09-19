@@ -52,13 +52,9 @@ const MovieDetail = (props: MovieDetailProps & ReduxState & ReduxActions) => {
         }
       </div>
       <div className="actions">
-        <Link className="return-btn" to="/all">
+        <Link className="return-btn" to="/">
           <i className="fa-solid fa-arrow-left" />
           Back to movie lists
-        </Link>
-        <Link className="return-btn" to="/">
-          <i className="fa-solid fa-house" />
-          Return to home page
         </Link>
       </div>
     </div>

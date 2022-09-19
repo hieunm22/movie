@@ -20,11 +20,14 @@
   border-radius: 7px;
   background-color: #0084ff;
   color: white;
-  text-decoration: none;
+  cursor: pointer;
   &:hover {
     opacity: 0.8;
-    text-decoration: underline;
   }
+}
+
+a.return-btn {
+  text-decoration: none;
 }
 
 @media screen and (max-width: 800px) {

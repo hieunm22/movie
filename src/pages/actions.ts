@@ -15,3 +15,11 @@ export const getMovieDetail = async (_: ReduxState, movieId: number) => {
     detail
   }
 }
+
+export const remove = (props: ReduxState, id: number) => {
+  const clone = [...props.allPlaying]
+  const removeList = clone.filter(f => f.id !== id)
+  return {
+    allPlaying: removeList
+  }
+}
