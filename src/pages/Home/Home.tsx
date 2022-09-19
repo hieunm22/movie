@@ -27,20 +27,45 @@ const Home = (props: AllMoviesProps) => {
         {props.allPlaying &&
           props.allPlaying.map((movie: Movie) => {
             const backdropPath = process.env.REACT_APP_IMAGE_BASE_URL + movie.backdrop_path
-            return <Fragment key={movie.id}>
-              <MovieTile movie={movie} backdropPath={backdropPath}  />
-            </Fragment>
+            return (
+              <Fragment key={movie.id}>
+                <MovieTile movie={movie} backdropPath={backdropPath} />
+              </Fragment>
+            )
           })}
       </div>
-      {pagination && (<div className="pagination">
-          <div className={`page ${props.currentPage === 1 && "active"}`} onClick={onPageChanged(1)}>1</div>
-          {props.currentPage > pagination.siblingCount + 2 && (<div className="page no-pointer">...</div>)}
-          {props.currentPage >= pagination.siblingCount + 2 && (<div className="page" onClick={onPageChanged(props.currentPage - 1)}>{props.currentPage - 1}</div>)}
-          {props.currentPage >= pagination.siblingCount + 1 && props.currentPage <= pagination.totalPages && (<div className="page active">{props.currentPage}</div>)}
-          {props.currentPage < pagination.totalPages - pagination.siblingCount && (<div className="page"onClick={onPageChanged(props.currentPage + 1)}>{props.currentPage + 1}</div>)}
-          {props.currentPage < pagination.totalPages - pagination.siblingCount - 1 && (<div className="page no-pointer">...</div>)}
-          {props.currentPage < pagination.totalPages && (<div className="page" onClick={onPageChanged(pagination.totalPages)}>{pagination.totalPages}</div>)}
-      </div>)}
+      {pagination && (
+        <div className="pagination">
+          <div className={`page ${props.currentPage === 1 && "active"}`} onClick={onPageChanged(1)}>
+            1
+          </div>
+          {props.currentPage > pagination.siblingCount + 2 && (
+            <div className="page no-pointer">...</div>
+          )}
+          {props.currentPage >= pagination.siblingCount + 2 && (
+            <div className="page" onClick={onPageChanged(props.currentPage - 1)}>
+              {props.currentPage - 1}
+            </div>
+          )}
+          {props.currentPage >= pagination.siblingCount + 1 &&
+            props.currentPage <= pagination.totalPages && (
+              <div className="page active">{props.currentPage}</div>
+            )}
+          {props.currentPage < pagination.totalPages - pagination.siblingCount && (
+            <div className="page" onClick={onPageChanged(props.currentPage + 1)}>
+              {props.currentPage + 1}
+            </div>
+          )}
+          {props.currentPage < pagination.totalPages - pagination.siblingCount - 1 && (
+            <div className="page no-pointer">...</div>
+          )}
+          {props.currentPage < pagination.totalPages && (
+            <div className="page" onClick={onPageChanged(pagination.totalPages)}>
+              {pagination.totalPages}
+            </div>
+          )}
+        </div>
+      )}
       <div className="return-btn" onClick={refreshList}>
         <i className="fa-solid fa-arrows-rotate" />
         Refresh list

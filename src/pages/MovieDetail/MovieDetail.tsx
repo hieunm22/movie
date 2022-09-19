@@ -33,23 +33,28 @@ const MovieDetail = (props: MovieDetailProps & ReduxState & ReduxActions) => {
       <div className="genre">Genre:</div>
       <div className="genre">
         {detail.genres.map((genre: Genre) => {
-          return (<div className="genre" key={genre.id}>+ {genre.name}</div>)
+          return (
+            <div className="genre" key={genre.id}>
+              + {genre.name}
+            </div>
+          )
         })}
       </div>
       <div className="release-date">Release date: {detail.release_date}</div>
       <div className="backdrop">
-        {detail.homepage ? 
+        {detail.homepage ? (
           <a href={detail.homepage}>
             <img
               src={process.env.REACT_APP_IMAGE_BASE_URL + detail.backdrop_path}
               alt={detail.original_title}
             />
           </a>
-          : <img
+        ) : (
+          <img
             src={process.env.REACT_APP_IMAGE_BASE_URL + detail.backdrop_path}
             alt={detail.original_title}
           />
-        }
+        )}
       </div>
       <div className="actions">
         <Link className="return-btn" to="/">

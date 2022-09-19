@@ -2,13 +2,14 @@ import { MovieTileProps } from "./MovieTile.types"
 import "./MovieTile.scss"
 import { formatNumber } from "../../common/helper"
 import { useNavigate } from "react-router-dom"
-import notFound from "../../assets/not-found.jpg";
+import notFound from "../../assets/not-found.jpg"
 
 const MovieTile = (props: MovieTileProps) => {
   const { movie } = props
-  const backdropPath = movie.backdrop_path ?? movie.poster_path
-    ? process.env.REACT_APP_IMAGE_BASE_URL + (movie.backdrop_path ?? movie.poster_path)
-    : notFound
+  const backdropPath =
+    movie.backdrop_path ?? movie.poster_path
+      ? process.env.REACT_APP_IMAGE_BASE_URL + (movie.backdrop_path ?? movie.poster_path)
+      : notFound
 
   const navigate = useNavigate()
   const href = () => {
