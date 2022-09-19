@@ -26,6 +26,34 @@
   }
 }
 
+.pagination {
+  display: flex;
+  width: 300px;
+  justify-content: space-between;
+  margin: 0 auto 10px auto;
+}
+
+.page {
+  border: solid 1px gray;
+  width: 30px;
+  text-align: center;
+  cursor: pointer;
+  &.active {
+    background-color: rgb(163, 163, 163);
+    color: white;
+    cursor: default;
+  }
+  &:not(.no-pointer):hover {
+    background-color: rgb(163, 163, 163);
+    color: white;
+  }
+}
+
+.page.no-pointer {
+  cursor: default;
+  border: none;
+}
+
 a.return-btn {
   text-decoration: none;
 }

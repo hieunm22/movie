@@ -1,6 +1,6 @@
 import { Fragment, useEffect } from "react"
 import { connect } from "redux-zero/react"
-import { getAllPlaying } from "../actions"
+import { getAllPlaying, gotoPage } from "../actions"
 import { ReduxState } from "../../types/Redux"
 import MovieTile from "./MovieTile"
 import { AllMoviesProps, Movie } from "./Home.types"
@@ -15,6 +15,12 @@ const Home = (props: AllMoviesProps) => {
     refreshList()
   }, [])
 
+  const pagination = props.pagination
+
+  const onPageChanged = (page: number) => () => {
+    props.gotoPage(page)
+  }
+
   return (
     <>
       <div className="movie-container">
@@ -26,6 +32,15 @@ const Home = (props: AllMoviesProps) => {
             </Fragment>
           })}
       </div>
+      {pagination && (<div className="pagination">
+          <div className={`page ${props.currentPage === 1 && "active"}`} onClick={onPageChanged(1)}>1</div>
+          {props.currentPage > pagination.siblingCount + 2 && (<div className="page no-pointer">...</div>)}
+          {props.currentPage >= pagination.siblingCount + 2 && (<div className="page" onClick={onPageChanged(props.currentPage - 1)}>{props.currentPage - 1}</div>)}
+          {props.currentPage >= pagination.siblingCount + 1 && props.currentPage <= pagination.totalPages && (<div className="page active">{props.currentPage}</div>)}
+          {props.currentPage < pagination.totalPages - pagination.siblingCount && (<div className="page"onClick={onPageChanged(props.currentPage + 1)}>{props.currentPage + 1}</div>)}
+          {props.currentPage < pagination.totalPages - pagination.siblingCount - 1 && (<div className="page no-pointer">...</div>)}
+          {props.currentPage < pagination.totalPages && (<div className="page" onClick={onPageChanged(pagination.totalPages)}>{pagination.totalPages}</div>)}
+      </div>)}
       <div className="return-btn" onClick={refreshList}>
         <i className="fa-solid fa-arrows-rotate" />
         Refresh list
@@ -35,11 +50,14 @@ const Home = (props: AllMoviesProps) => {
 }
 
 const actions = {
-  getAllPlaying
+  getAllPlaying,
+  gotoPage
 }
 
-const mapToProps = ({ allPlaying }: ReduxState) => ({
-  allPlaying
+const mapToProps = ({ allPlaying, currentPage, pagination }: ReduxState) => ({
+  allPlaying,
+  currentPage,
+  pagination
 })
 
 const connected = connect(mapToProps, actions)
