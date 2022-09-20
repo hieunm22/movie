@@ -5,6 +5,7 @@ export interface ReduxState {
   allPlaying: Movie[]
   detail: MovieDetailProps | null
   currentPage: number
+  error: any
   pagination?: Pagination
 }
 
@@ -17,7 +18,6 @@ export interface Pagination {
 }
 
 export interface ReduxActions {
-  getAllPlaying: () => ReduxState
+  getAllPlaying: (page: number) => ReduxState
   getMovieDetail: (movieId: number) => ReduxState
-  gotoPage: (page: number) => ReduxState
 }

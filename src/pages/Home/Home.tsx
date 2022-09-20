@@ -1,6 +1,6 @@
 import { Fragment, useEffect } from "react"
 import { connect } from "redux-zero/react"
-import { getAllPlaying, gotoPage } from "../actions"
+import { getAllPlaying } from "../actions"
 import { ReduxState } from "../../types/Redux"
 import MovieTile from "./MovieTile"
 import { AllMoviesProps, Movie } from "./Home.types"
@@ -8,7 +8,7 @@ import "./Home.scss"
 
 const Home = (props: AllMoviesProps) => {
   const refreshList = async () => {
-    await props.getAllPlaying()
+    await props.getAllPlaying(props.currentPage)
   }
 
   useEffect(() => {
@@ -18,7 +18,7 @@ const Home = (props: AllMoviesProps) => {
   const pagination = props.pagination
 
   const onPageChanged = (page: number) => () => {
-    props.gotoPage(page)
+    props.getAllPlaying(page)
   }
 
   return (
@@ -75,8 +75,7 @@ const Home = (props: AllMoviesProps) => {
 }
 
 const actions = {
-  getAllPlaying,
-  gotoPage
+  getAllPlaying
 }
 
 const mapToProps = ({ allPlaying, currentPage, pagination }: ReduxState) => ({

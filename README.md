@@ -22,7 +22,7 @@ The following **optional** features are implemented:
 - [ ] Add a search bar.
 - [ ] All images fade in.
 - [ ] Implement lazy load image.
-- [ ] Customize the highlight and selection effect of the cell.
+- [x] Customize the highlight and selection effect of the cell.
 - [ ] Improve UX loading by skeleton loading.
 - [ ] Enhance responsive.
 

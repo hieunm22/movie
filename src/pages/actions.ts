@@ -1,30 +1,12 @@
 import { Pagination, ReduxState } from "../types/Redux"
 import * as API from "./API"
 
-export const getAllPlaying = async (props: ReduxState) => {
-  const response = await API.getAllPlaying(props.currentPage)
-  const allPlaying = response.results
-
-  const pagination: Pagination = {
-    currentPage: response.page,
-    pageSize: 20,
-    siblingCount: 1,
-    totalCount: response.total_results,
-    totalPages: response.total_pages
-  }
-  return {
-    allPlaying,
-    currentPage: response.page,
-    pagination
-  }
-}
-
-export const gotoPage = async (_: ReduxState, page: number) => {
+export const getAllPlaying = async (_: ReduxState, page: number) => {
   const response = await API.getAllPlaying(page)
   const allPlaying = response.results
 
   const pagination: Pagination = {
-    currentPage: page,
+    currentPage: response.page,
     pageSize: 20,
     siblingCount: 1,
     totalCount: response.total_results,

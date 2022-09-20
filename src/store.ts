@@ -4,6 +4,7 @@ import { ReduxState } from "./types/Redux"
 const initialState: ReduxState = {
   allPlaying: [],
   detail: null,
+  error: null,
   currentPage: 1
 }
 
