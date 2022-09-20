@@ -56,5 +56,5 @@ Here's a walkthrough of implemented user stories:
     - Create an account in https://www.themoviedb.org/
     - Go to https://www.themoviedb.org/settings/profile
     - Go to [API section](https://www.themoviedb.org/settings/api) in left section and create a new API key here
-    - Replace it with new API generated in ```.env.example``` in line 2, ```REACT_APP_API_KEY=<api_key>```
+    - Replace it with new API generated in ``.env.example`` in line 2, ``REACT_APP_API_KEY=<api_key>``
     - Do start project with `make start` command in terminal
