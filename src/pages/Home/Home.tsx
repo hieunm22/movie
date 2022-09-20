@@ -8,6 +8,7 @@ import Pagination from "./Pagination"
 import MovieList from "./MovieList"
 import SearchBar from "./SearchBar"
 import { searchMovie } from "../actions"
+import AlertPopup from "../Common/AlertPopup"
 
 const Home = (props: HomeProps) => {
   const refreshList = async () => {
@@ -25,6 +26,7 @@ const Home = (props: HomeProps) => {
 
   return (
     <>
+      {props.error && <AlertPopup />}
       <SearchBar {...props} />
       <MovieList {...props} />
       <Pagination {...props} />
@@ -41,8 +43,9 @@ const actions = {
   searchMovie
 }
 
-const mapToProps = ({ searchResults, query, currentPage }: ReduxState) => ({
+const mapToProps = ({ searchResults, error, query, currentPage }: ReduxState) => ({
   searchResults,
+  error,
   query,
   currentPage
 })

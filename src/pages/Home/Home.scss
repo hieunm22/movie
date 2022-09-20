@@ -23,6 +23,7 @@
   background-color: #0084ff;
   color: white;
   cursor: pointer;
+
   &:hover {
     opacity: 0.8;
   }
@@ -40,11 +41,13 @@
   width: 30px;
   text-align: center;
   cursor: pointer;
+
   &.active {
     background-color: rgb(163, 163, 163);
     color: white;
     cursor: default;
   }
+
   &:not(.no-pointer):hover {
     background-color: rgb(163, 163, 163);
     color: white;
@@ -110,6 +113,7 @@ a.return-btn {
   border-bottom: solid 1px gray;
   outline: none;
   font-size: 14pt;
+
   &:focus {
     border-bottom: solid 2px #0084ff;
   }
@@ -118,4 +122,122 @@ a.return-btn {
 .search-label {
   justify-content: center;
   align-items: center;
+}
+
+.modal-dialog {
+  width: 99%;
+  height: 100vh;
+  margin: 0 auto;
+  top: 0;
+  position: absolute;
+  background-color: rgba(16, 22, 26, 0.7);
+
+  &.dark {
+    background-color: rgba(16, 22, 26, 0.9);
+  }
+}
+
+.modal-content {
+  background-clip: padding-box;
+  background-color: #fff;
+  border: 1px solid #999;
+  border: 1px solid rgba(0, 0, 0, .2);
+  border-radius: 6px;
+  box-shadow: 0 3px 9px rgb(0 0 0 / 50%);
+  outline: 0;
+  position: relative;
+
+  &.popup {
+    width: 450px;
+    margin: 100px auto 0 auto;
+  }
+}
+
+.modal-header {
+  padding: 10px;
+}
+
+.modal-body {
+  padding: 10px;
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+.custom-footer {
+  display: flex;
+  padding: 15px;
+  text-align: center;
+  border-top: 1px solid #e5e5e5;
+  justify-content: space-around;
+}
+
+.custom-footer-popup {
+  display: flex;
+  padding: 15px;
+  text-align: center;
+  border-top: none;
+  justify-content: space-around;
+}
+
+.wide-link {
+  width: 100%;
+  display: inline-block;
+  text-align: center;
+  color: #337ab7;
+  cursor: pointer;
+
+  &::before {
+    content: attr(content);
+  }
+
+  &.disabled {
+    color: gray;
+
+    &:hover {
+      text-decoration: none;
+      cursor: default;
+    }
+  }
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+@keyframes fadeInUpKF {
+  0% {
+    opacity: 0;
+    -webkit-transform: translate3d(0, 100%, 0);
+    transform: translate3d(0, 100%, 0);
+  }
+
+  to {
+    opacity: 1;
+    -webkit-transform: none;
+    transform: none;
+  }
+}
+
+@keyframes fadeInDownKF {
+  0% {
+    opacity: 1;
+    -webkit-transform: none;
+    transform: none;
+  }
+
+  to {
+    opacity: 0;
+    -webkit-transform: translate3d(0, 100%, 0);
+    transform: translate3d(0, 100%, 0);
+  }
+}
+
+.fade-in-up {
+  animation-name: fadeInUpKF;
+  animation-duration: 0.5s;
+}
+
+.fade-in-down {
+  animation-name: fadeInDownKF;
+  animation-duration: 0.5s;
 }

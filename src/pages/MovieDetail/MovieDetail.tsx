@@ -7,6 +7,7 @@ import { Link, useParams } from "react-router-dom"
 import { LoadingScreen } from "../../components/LoadingScreen/LoadingScreen"
 import { formatNumber } from "../../common/helper"
 import "./MovieDetail.scss"
+import AlertPopup from "../Common/AlertPopup"
 
 const MovieDetail = (props: MovieDetailProps & ReduxState & ReduxActions) => {
   const params = useParams()
@@ -17,7 +18,11 @@ const MovieDetail = (props: MovieDetailProps & ReduxState & ReduxActions) => {
       await props.getMovieDetail(id)
     }
     wait()
-  }, [params.id, props])
+  }, [])
+
+  if (props.error) {
+    return <AlertPopup />
+  }
 
   if (!props.detail) {
     return <LoadingScreen />
@@ -70,8 +75,9 @@ const actions = {
   getMovieDetail
 }
 
-const mapToProps = ({ detail }: ReduxState) => ({
-  detail
+const mapToProps = ({ detail, error }: ReduxState) => ({
+  detail,
+  error
 })
 
 const connected = connect(mapToProps, actions)

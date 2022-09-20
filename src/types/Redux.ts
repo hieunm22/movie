@@ -22,4 +22,5 @@ export interface ReduxActions {
   getAllPlaying: (page: number) => ReduxState
   getMovieDetail: (movieId: number) => ReduxState
   searchMovie: (query: string, page: number) => ReduxState
+  clearErrorMessage: () => ReduxState
 }
