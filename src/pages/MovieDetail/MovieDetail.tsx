@@ -17,7 +17,7 @@ const MovieDetail = (props: MovieDetailProps & ReduxState & ReduxActions) => {
       await props.getMovieDetail(id)
     }
     wait()
-  }, [])
+  }, [params.id, props])
 
   if (!props.detail) {
     return <LoadingScreen />

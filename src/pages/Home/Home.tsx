@@ -3,10 +3,11 @@ import { connect } from "redux-zero/react"
 import { getAllPlaying } from "../actions"
 import { ReduxState } from "../../types/Redux"
 import MovieTile from "./MovieTile"
-import { AllMoviesProps, Movie } from "./Home.types"
+import { HomeProps, Movie } from "./Home.types"
 import "./Home.scss"
+import Pagination from "./Pagination"
 
-const Home = (props: AllMoviesProps) => {
+const Home = (props: HomeProps) => {
   const refreshList = async () => {
     await props.getAllPlaying(props.currentPage)
   }
@@ -15,14 +16,9 @@ const Home = (props: AllMoviesProps) => {
     refreshList()
   }, [])
 
-  const pagination = props.pagination
-
-  const onPageChanged = (page: number) => () => {
-    props.getAllPlaying(page)
-  }
-
   return (
     <>
+
       <div className="movie-container">
         {props.allPlaying &&
           props.allPlaying.map((movie: Movie) => {
@@ -34,38 +30,7 @@ const Home = (props: AllMoviesProps) => {
             )
           })}
       </div>
-      {pagination && (
-        <div className="pagination">
-          <div className={`page ${props.currentPage === 1 && "active"}`} onClick={onPageChanged(1)}>
-            1
-          </div>
-          {props.currentPage > pagination.siblingCount + 2 && (
-            <div className="page no-pointer">...</div>
-          )}
-          {props.currentPage >= pagination.siblingCount + 2 && (
-            <div className="page" onClick={onPageChanged(props.currentPage - 1)}>
-              {props.currentPage - 1}
-            </div>
-          )}
-          {props.currentPage >= pagination.siblingCount + 1 &&
-            props.currentPage <= pagination.totalPages && (
-              <div className="page active">{props.currentPage}</div>
-            )}
-          {props.currentPage < pagination.totalPages - pagination.siblingCount && (
-            <div className="page" onClick={onPageChanged(props.currentPage + 1)}>
-              {props.currentPage + 1}
-            </div>
-          )}
-          {props.currentPage < pagination.totalPages - pagination.siblingCount - 1 && (
-            <div className="page no-pointer">...</div>
-          )}
-          {props.currentPage < pagination.totalPages && (
-            <div className="page" onClick={onPageChanged(pagination.totalPages)}>
-              {pagination.totalPages}
-            </div>
-          )}
-        </div>
-      )}
+      <Pagination {...props} />
       <div className="return-btn" onClick={refreshList}>
         <i className="fa-solid fa-arrows-rotate" />
         Refresh list
@@ -78,10 +43,9 @@ const actions = {
   getAllPlaying
 }
 
-const mapToProps = ({ allPlaying, currentPage, pagination }: ReduxState) => ({
+const mapToProps = ({ allPlaying, currentPage }: ReduxState) => ({
   allPlaying,
-  currentPage,
-  pagination
+  currentPage
 })
 
 const connected = connect(mapToProps, actions)

@@ -1,6 +1,6 @@
 import { ReduxActions, ReduxState } from "../../types/Redux"
 
-export type AllMoviesProps = ReduxState & ReduxActions
+export type HomeProps = ReduxState & ReduxActions
 export interface Movie {
   adult: boolean
   backdrop_path: string
