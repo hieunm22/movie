@@ -1,15 +1,22 @@
-import { Fragment, useEffect } from "react"
+import { useEffect } from "react"
 import { connect } from "redux-zero/react"
 import { getAllPlaying } from "../actions"
 import { ReduxState } from "../../types/Redux"
-import MovieTile from "./MovieTile"
-import { HomeProps, Movie } from "./Home.types"
+import { HomeProps } from "./Home.types"
 import "./Home.scss"
 import Pagination from "./Pagination"
+import MovieList from "./MovieList"
+import SearchBar from "./SearchBar"
+import { searchMovie } from "../actions"
 
 const Home = (props: HomeProps) => {
   const refreshList = async () => {
-    await props.getAllPlaying(props.currentPage)
+    if (props.query) {
+      await props.searchMovie(props.query, props.currentPage)
+    }
+    else {
+      props.getAllPlaying(1)
+    }
   }
 
   useEffect(() => {
@@ -18,18 +25,8 @@ const Home = (props: HomeProps) => {
 
   return (
     <>
-
-      <div className="movie-container">
-        {props.allPlaying &&
-          props.allPlaying.map((movie: Movie) => {
-            const backdropPath = process.env.REACT_APP_IMAGE_BASE_URL + movie.backdrop_path
-            return (
-              <Fragment key={movie.id}>
-                <MovieTile movie={movie} backdropPath={backdropPath} />
-              </Fragment>
-            )
-          })}
-      </div>
+      <SearchBar {...props} />
+      <MovieList {...props} />
       <Pagination {...props} />
       <div className="return-btn" onClick={refreshList}>
         <i className="fa-solid fa-arrows-rotate" />
@@ -40,11 +37,13 @@ const Home = (props: HomeProps) => {
 }
 
 const actions = {
-  getAllPlaying
+  getAllPlaying,
+  searchMovie
 }
 
-const mapToProps = ({ allPlaying, currentPage }: ReduxState) => ({
-  allPlaying,
+const mapToProps = ({ searchResults, query, currentPage }: ReduxState) => ({
+  searchResults,
+  query,
   currentPage
 })
 

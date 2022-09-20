@@ -1,18 +1,24 @@
 import { connect } from "redux-zero/react"
-import { LoadingScreen } from "../../components/LoadingScreen/LoadingScreen"
 import { ReduxState } from "../../types/Redux"
+import { searchMovie } from "../actions"
 import { getAllPlaying } from "../API"
 import { HomeProps } from "./Home.types"
 
 const Pagination = (props: HomeProps) => {
   const onPageChanged = (page: number) => () => {
-    props.getAllPlaying(page)
+    if (!props.query) {
+      props.getAllPlaying(page)
+    }
+    else {
+      props.searchMovie(props.query, page)
+    }
   }
 
   const pagination = props.pagination
   if (!pagination) {
-    return <LoadingScreen />
+    return <></>
   }
+
   return (
     <div className="pagination">
       <div className={`page ${props.currentPage === 1 && "active"}`} onClick={onPageChanged(1)}>
@@ -48,12 +54,14 @@ const Pagination = (props: HomeProps) => {
 }
 
 const actions = {
-  getAllPlaying
+  getAllPlaying,
+  searchMovie
 }
 
-const mapToProps = ({ allPlaying, currentPage, pagination }: ReduxState) => ({
-  allPlaying,
+const mapToProps = ({ searchResults, currentPage, query, pagination }: ReduxState) => ({
+  searchResults,
   currentPage,
+  query,
   pagination
 })
 

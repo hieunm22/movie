@@ -1,5 +1,4 @@
 import { MovieTileProps } from "./MovieTile.types"
-import "./MovieTile.scss"
 import { formatNumber } from "../../common/helper"
 import { useNavigate } from "react-router-dom"
 import notFound from "../../assets/not-found.jpg"

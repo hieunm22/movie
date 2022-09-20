@@ -2,9 +2,10 @@ import createStore from "redux-zero"
 import { ReduxState } from "./types/Redux"
 
 const initialState: ReduxState = {
-  allPlaying: [],
+  searchResults: [],
   detail: null,
   error: null,
+  query: "",
   currentPage: 1
 }
 
