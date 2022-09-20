@@ -38,7 +38,7 @@ Here's a walkthrough of implemented user stories:
 
 ## License
 
-    Copyright [2016] [your-name]
+    Copyright [2022] [Nguyen Minh Hieu]
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
@@ -51,3 +51,10 @@ Here's a walkthrough of implemented user stories:
     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
     See the License for the specific language governing permissions and
     limitations under the License.
+
+## Run
+    - Create an account in https://www.themoviedb.org/
+    - Go to https://www.themoviedb.org/settings/profile
+    - Go to [API section](https://www.themoviedb.org/settings/api) in left section and create a new API key here
+    - Replace it with new API generated in ```.env.example``` in line 2, ```REACT_APP_API_KEY=<api_key>```
+    - Do start project with `make start` command in terminal
